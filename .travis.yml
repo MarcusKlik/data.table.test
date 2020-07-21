@@ -1,6 +1,5 @@
 language: r
 dist: trusty
-osx_image: xcode11
 cache: packages   # to rebuild cache see tweet thread ending here https://twitter.com/jimhester_/status/1115718589804421121
 warnings_are_errors: true
 
@@ -19,13 +18,7 @@ r_packages:
   - covr
 
 before_install:
-  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then rm "/usr/local/bin/gfortran" &&
-    brew install llvm &&
-    export PATH="/usr/local/opt/llvm/bin:$PATH" &&
-    export LDFLAGS="-L/usr/local/opt/llvm/lib -L/usr/local/opt/libffi/lib" &&
-    export CFLAGS="-I/usr/local/opt/llvm/include" &&
-    export CPPFLAGS="-I/usr/local/opt/libffi/include" &&
-    export PKG_CONFIG_PATH="/usr/local/opt/libffi/lib/pkgconfig"; fi
+  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then rm "/usr/local/bin/gfortran"
 
 before_script:
   - echo "Revision:" $TRAVIS_COMMIT >> ./DESCRIPTION
